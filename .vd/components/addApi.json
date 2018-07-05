@@ -1,0 +1,23 @@
+{
+  "author": "尹传武",
+  "type": 0,
+  "format": "class",
+  "group": "",
+  "name": "AddApi",
+  "description": "添加 API",
+  "version": "1.0.0",
+  "compatibility": {
+    "chrome": "latest",
+    "firefox": "latest",
+    "safari": "latest",
+    "ie": "latest"
+  },
+  "lifecycle": [
+    "constructor",
+    "render",
+    "componentWillMount"
+  ],
+  "isPropCheck": true,
+  "note": "",
+  "camelCaseName": "addApi"
+}

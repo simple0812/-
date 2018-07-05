@@ -1,0 +1,25 @@
+{
+  "author": "尹传武",
+  "type": 0,
+  "format": "class",
+  "group": "",
+  "name": "Panel",
+  "description": "面板",
+  "version": "1.0.0",
+  "compatibility": {
+    "chrome": "latest",
+    "firefox": "latest",
+    "safari": "latest",
+    "ie": "latest"
+  },
+  "module": [
+    "style"
+  ],
+  "lifecycle": [
+    "constructor",
+    "render"
+  ],
+  "isPropCheck": true,
+  "note": "",
+  "camelCaseName": "panel"
+}

@@ -1,0 +1,12 @@
+import {{component}} from './{{component}}';
+{{#subComponents}}
+import {{.}} from './{{.}}';
+{{/subComponents}}
+
+export default {{component}};
+
+export {
+  {{#subComponents}}
+  {{.}}
+  {{/subComponents}}
+};
