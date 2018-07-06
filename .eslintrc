@@ -27,6 +27,7 @@
     "import/no-duplicates": "off",
     "object-curly-newline": "off",
     "no-console": "off",
+    "no-continue":"off",
     "no-script-url": "off",
     "no-use-before-define": "off",
     "no-multi-assign": "off",

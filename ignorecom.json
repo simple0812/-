@@ -1,8 +1,8 @@
 {
-  "Button": [
-    "Group"
-  ],
   "Input": [
     "TextArea"
+  ],
+  "Button": [
+    "Group"
   ]
 }

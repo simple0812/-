@@ -20,8 +20,6 @@ _.keys(ignoreComs).forEach(item => {
   });
 });
 
-console.log(igFiles)
-
 const DEBUG = process.env.NODE_ENV !== 'production';
 if (process.env.PC_CLIENT) {
   // 开发环境
