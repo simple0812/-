@@ -8,6 +8,7 @@ import { Form, Input, Radio } from 'antd';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import './less/async.less';
+import { resolveVariable } from '../../../utils/lessHelper';
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -53,20 +54,24 @@ class EditComponent extends React.Component {
   }
 
   handleChange = (raw, val, prevValue) => {
-    const { form } = this.props;
+    // const { form } = this.props;
     if (val === prevValue) {
       return val;
     }
 
-    const cssObj = {
-      ...form.getFieldsValue(),
-      ...{
-        [raw.key]: val.replace(/@/ig, '') || 'nil' // 替换特殊字符@，当为空的时候使用nil补充 否则 less解析会报错
-      }
-    };
+    // const cssObj = {
+    //   ...form.getFieldsValue(),
+    //   ...{
+    //     [raw.key]: val.replace(/@/ig, '') || 'nil' // 替换特殊字符@，当为空的时候使用nil补充 否则 less解析会报错
+    //   }
+    // };
 
-    const rawCss = _.keys(cssObj).map(item => `${item}: ${cssObj[item]};`).join('\r\n');
-    fse.writeFileSync(path.resolve(this.cssVarFile), rawCss);
+    const xVal = val.replace(/@/ig, '') || 'nil';
+
+    // const rawCss = _.keys(cssObj).map(item => `${item}: ${cssObj[item]};`).join('\r\n');
+    const rawCss = fse.readFileSync(path.resolve(this.cssVarFile), 'utf-8');
+    const retCss = rawCss.replace(new RegExp(`@${raw.key}\\s*:\\s*(\\w+);`, 'ig'), `@${raw.key}: ${xVal};`);
+    fse.writeFileSync(path.resolve(this.cssVarFile), retCss);
 
     return val;
   }
@@ -100,21 +105,7 @@ class EditComponent extends React.Component {
 
   render() {
     const { subComponent } = this.state;
-
-    let rawCssVar = '';
-    if (fs.existsSync(this.cssVarFile)) {
-      rawCssVar = fse.readFileSync(this.cssVarFile, 'utf-8');
-    }
-    const cssVar = rawCssVar.replace(/\n/ig, '').split(/;\s*/)
-      .filter(each => each && each.indexOf(':'))
-      .map(each => {
-        const kv = each.split(':');
-
-        return {
-          key: kv[0],
-          val: kv[1].trim()
-        };
-      });
+    const cssVar = resolveVariable(this.cssVarFile);
 
     const funcFiles = _.without(this.getSubComponents(), ...this.getIgnoreComponents());
     const { form: { getFieldDecorator } } = this.props;
@@ -139,26 +130,35 @@ class EditComponent extends React.Component {
           {this.preview()}
         </div>
         <div className="right">
-
-          <RadioGroup
-            value={subComponent}
-            options={funcFiles}
-            onChange={this.handleFuncChange} />
-          <Form onSubmit={this.handleSubmit}>
-            {
-              cssVar.map(each => (
-                <FormItem
-                  key={each.key}
-                  label={each.key}
-                  {...formItemLayout}>
-                  {getFieldDecorator(each.key, {
-                    initialValue: each.val || '',
-                    normalize: this.handleChange.bind(this, each)
-                  })(<Input />)}
-                </FormItem>
-              ))
-            }
-          </Form>
+          <div>
+            <RadioGroup
+              value={subComponent}
+              options={funcFiles}
+              onChange={this.handleFuncChange} />
+          </div>
+          {
+            _.keys(cssVar).map(item => (
+              <span key={item}>
+                <span>{item}</span>
+                <Form onSubmit={this.handleSubmit}>
+                  {
+                    cssVar[item].map(each => (
+                      <FormItem
+                        key={each.key}
+                        label={each.key}
+                        {...formItemLayout}>
+                        {getFieldDecorator(each.key, {
+                          initialValue: each.val || '',
+                          normalize: this.handleChange.bind(this, each)
+                        })(<Input />)}
+                      </FormItem>
+                    ))
+                  }
+                </Form>
+              </span>
+            ))
+          }
+          
         </div>
 
       </div>

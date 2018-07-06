@@ -130,11 +130,12 @@ class EditComponent extends React.Component {
           {this.preview()}
         </div>
         <div className="right">
-
-          <RadioGroup
-            value={subComponent}
-            options={funcFiles}
-            onChange={this.handleFuncChange} />
+          <div>
+            <RadioGroup
+              value={subComponent}
+              options={funcFiles}
+              onChange={this.handleFuncChange} />
+          </div>
           {
             _.keys(cssVar).map(item => (
               <span key={item}>

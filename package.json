@@ -87,8 +87,7 @@
   },
   "homepage": "https://github.com/yincw/webpack-boilerplate#readme",
   "dependencies": {
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-config-airbnb-base": "^13.0.0",
+   
     "ignore-loader": "^0.1.2",
     "mustache": "^2.3.0",
     "sequelize": "^4.37.6",
@@ -133,6 +132,8 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
     "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-compat": "^2.2.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
