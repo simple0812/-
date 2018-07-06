@@ -4,5 +4,5 @@ import Group from './Group';
 export default Button;
 
 export {
-  Group
+  Group,
 };

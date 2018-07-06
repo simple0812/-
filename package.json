@@ -87,13 +87,6 @@
   },
   "homepage": "https://github.com/yincw/webpack-boilerplate#readme",
   "dependencies": {
-   
-    "ignore-loader": "^0.1.2",
-    "mustache": "^2.3.0",
-    "sequelize": "^4.37.6",
-    "sqlite3": "^4.0.0"
-  },
-  "devDependencies": {
     "antd": "^3.4.3",
     "assets-webpack-plugin": "^3.5.1",
     "autoprefixer": "^8.3.0",
@@ -119,6 +112,7 @@
     "browser-sync-webpack-plugin": "^2.2.2",
     "classnames": "^2.2.5",
     "clean-webpack-plugin": "^0.1.19",
+    "concurrently": "^3.6.0",
     "copy-webpack-plugin": "^4.5.1",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
@@ -127,6 +121,7 @@
     "dva-model-extend": "^0.1.2",
     "electron": "1.8.6",
     "electron-builder": "^20.10.0",
+    "electron-is": "^2.4.1",
     "electron-log": "^2.2.14",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -141,8 +136,10 @@
     "eslint-plugin-react": "^7.7.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
+    "fix-path": "^2.1.0",
     "fs-extra": "^6.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "ignore-loader": "^0.1.2",
     "image-webpack-loader": "^4.2.0",
     "jest": "^22.4.3",
     "jquery": "^3.3.1",
@@ -153,6 +150,8 @@
     "lodash-webpack-plugin": "^0.11.5",
     "mini-css-extract-plugin": "^0.4.0",
     "mockjs": "^1.0.1-beta3",
+    "mustache": "^2.3.0",
+    "npm-run-path": "^2.0.2",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
     "postcss-loader": "^2.1.4",
     "prop-types": "^15.6.1",
@@ -168,6 +167,8 @@
     "redux-auth-wrapper": "^2.0.2",
     "rework.less": "^1.0.0",
     "semver": "^5.5.0",
+    "sequelize": "^4.37.6",
+    "sqlite3": "^4.0.0",
     "style-loader": "^0.21.0",
     "svg-sprite-loader": "^3.7.3",
     "uglifyjs-webpack-plugin": "^1.2.5",
@@ -179,5 +180,6 @@
     "webpack-dev-server": "^3.1.3",
     "webpack-merge": "^4.1.2",
     "webpack-spritesmith": "^0.4.1"
-  }
+  },
+  "devDependencies": {}
 }

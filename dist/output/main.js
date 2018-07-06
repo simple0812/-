@@ -1,4 +1,4 @@
-import {app, BrowserWindow} from 'electron';
+import {app, BrowserWindow, ipcMain} from 'electron';
 import path from 'path';
 import url from 'url';
 
@@ -9,7 +9,33 @@ app.rootDir = process.cwd();
 
 let win;
 
+// ipcMain.on('test', (evt) => {
+//   logger.error('zzzzz')
+// });
+
+
 async function createWindow () {
+  win = new BrowserWindow({
+    width: 1024,
+    height: 768
+  });
+
+  win.loadURL('http://localhost:3000/');
+  if (process.env.electronMode === 'dev') {
+    win.webContents.openDevTools();
+  }
+
+  win.webContents.on('test', () => {
+    logger.error('xxxxxxxxxxxxx')
+  })
+  win.setMenu(null);
+
+  win.on('closed', () => {
+    win = null;
+  });
+}
+
+function createWindowX () {
   win = new BrowserWindow({
     width: 1024,
     height: 768
@@ -47,7 +73,7 @@ async function createWindow () {
 
 app.on('window-all-closed', () => {
   // if (process.platform !== 'darwin') {
-    app.quit();
+  app.quit();
   // }
 });
 

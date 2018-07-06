@@ -8,6 +8,7 @@ import _ from 'lodash';
 import { List, Form, Checkbox } from 'antd';
 import Mustache from 'mustache';
 import './less/async.less';
+import { remote, ipcRenderer } from 'electron';
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -24,6 +25,11 @@ class ComponentList extends React.Component {
 
   getSubComponents(component) {
     return this.getFuncFiles(component);
+  }
+
+  handleTest = () => {
+    console.log(remote.getGlobal('process'))
+    ipcRenderer.send('test', {x:1})
   }
 
   getFuncFiles = (component) => {
@@ -94,6 +100,7 @@ class ComponentList extends React.Component {
           />
         </div>
         <div className="right">
+            <button onClick={this.handleTest}>test</button>
         </div>
       </div>
     );
